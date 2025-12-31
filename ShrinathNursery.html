@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shrinath Nursery & Farm</title>
+
+<style>
+/* Smooth fade animation for category change */
+.fade-in {
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+        color: #2e2e2e;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 25px 10px 10px;
+        font-size: 42px;
+        color: #1b5e20;
+    }
+
+    .filter-bar {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .filter-btn {
+        padding: 10px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 25px;
+        font-size: 15px;
+        cursor: pointer;
+        background: #e0e0e0;
+        transition: 0.3s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+        background: #1b5e20;
+        color: white;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 30px;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+   .card .image-wrapper {
+        width: 100%;
+        aspect-ratio: 4 / 3;   /* controls height */
+        overflow: hidden;
+
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .info {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .name {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1b5e20;
+    }
+
+    .height {
+        font-size: 15px;
+        color: #555;
+        margin-top: 4px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        color: #666;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🌿 Shrinath Nursery & Farm 🌿</h1>
+
+<div class="filter-bar">
+    <button class="filter-btn active" onclick="loadCategory('exotic', this)">Exotic Collection</button>
+    <button class="filter-btn" onclick="loadCategory('indoor', this)">Exclusive Indoor Plants</button>
+    <button class="filter-btn" onclick="loadCategory('palms', this)">Palms</button>
+</div>
+
+<div id="gallery" class="gallery"></div>
+
+<footer>
+    N.H. No. 48, Vasad, Anand, Gujarat
+</footer>
+
+<script>
+const data = {
+    exotic: `
+        <div class="card" onclick="openWhatsApp('Ficus panda multi branch')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG1.JPG">
+            <div class="info"><div class="name">Ficus panda multi branch</div><div class="height">Height: 12 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Ficus panda zig multi branch')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG2.JPG">
+            <div class="info"><div class="name">Ficus panda zig multi branch</div><div class="height">Height: 10 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Ficus microcarpa X multi branch')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG3.JPG">
+            <div class="info"><div class="name">Ficus microcarpa X multi branch</div><div class="height">Height: 7 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Ficus nuda canopy')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG4.JPG">
+            <div class="info"><div class="name">Ficus nuda canopy</div><div class="height">Height: 7 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Ficus apollo knitted topiary')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG5.JPG">
+            <div class="info"><div class="name">Ficus apollo knitted topiary</div><div class="height">Height: 7 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Dracaena drago giant')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG6.jpg">
+            <div class="info"><div class="name">Dracaena drago giant</div><div class="height">Height: 7 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Dracaena drago')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG7.PNG">
+            <div class="info"><div class="name">Dracaena drago</div><div class="height">Height: 6 ft</div></div>
+        </div>
+
+        <div class="card" onclick="openWhatsApp('Monstera deliciosa M/S')">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG8.JPG">
+            <div class="info"><div class="name">Monstera deliciosa M/S</div><div class="height">Height: 6 ft</div></div>
+        </div>
+    `,
+
+    indoor: `
+        <div class="card" onclick="openWhatsApp('Ficus panda multi branch')">
+        <div class="image-wrapper">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG1.JPG">
+        </div>
+            <div class="info"><div class="name">Ficus panda multi branch</div><div class="height">Height: 12 ft</div></div>
+        </div>
+    `,
+
+    palms: `
+        <div class="card" onclick="openWhatsApp('Monstera deliciosa M/S')">
+        <div class="image-wrapper">
+            <img src="https://raw.githubusercontent.com/vatxal/images/1195b6a96c92e73b00962e86595dba97da3dfd19/IMG8.JPG">
+        </div>
+            <div class="info"><div class="name">Monstera deliciosa M/S</div><div class="height">Height: 6 ft</div></div>
+        </div>
+    `
+};
+
+function loadCategory(category, btn) {
+    const gallery = document.getElementById("gallery");
+
+    // Clear old content
+    gallery.innerHTML = "";
+
+    // Add animation class
+    gallery.classList.remove("fade-in");
+    void gallery.offsetWidth; // force reflow
+    gallery.classList.add("fade-in");
+
+    // Load new content
+    gallery.innerHTML = data[category];
+
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+
+// Load default section
+loadCategory('exotic', document.querySelector('.filter-btn'));
+
+function openWhatsApp(plantName) {
+    const phoneNumber = "919904077701";
+    const message = `Hello, I am interested in ${plantName}. Please share more details.`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+}
+</script>
+
+</body>
+</html>
